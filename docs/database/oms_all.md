@@ -368,7 +368,7 @@ create table oms_company_address
 
 ### 移动端展现
 - 在我的中打开售后服务  
-![](../images/database_screen_64.png)
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0202/113046_b1de7108_459158.png "屏幕截图.png")
 - 点击申请退货进行退货申请  
 ![](../images/database_screen_65.png)
 - 提交退货申请  

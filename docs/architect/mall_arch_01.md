@@ -1,18 +1,16 @@
-mall项目全套学习教程连载中，[关注公众号](#公众号)第一时间获取。
+# CH新零售平台【chmall】开发说明
 
-# mall整合SpringBoot+MyBatis搭建基本骨架
-
-> 本文主要讲解mall整合SpringBoot+MyBatis搭建基本骨架，以商品品牌为例实现基本的CRUD操作及通过PageHelper实现分页查询。
+> 本说明主要讲解CH新零售平台【chmall】的基本开发环境搭建，并以商品品牌为例实现基本的CRUD操作及通过PageHelper实现分页查询。
 
 ## mysql数据库环境搭建
 
 - 下载并安装mysql5.7版本，下载地址：https://dev.mysql.com/downloads/installer/
-- 设置数据库帐号密码：root root
+- 设置数据库帐号密码：chunhui chunhui
 - 下载并安装客户端连接工具Navicat,下载地址：http://www.formysql.com/xiazai.html
-- 创建数据库mall
-- 导入mall的数据库脚本，脚本地址：https://github.com/macrozheng/mall-learning/blob/master/document/sql/mall.sql
+- 创建数据库chmall
+- 导入chmall的数据库脚本
 
-## 项目使用框架介绍
+## CH新零售平台使用框架介绍
 
 ### SpringBoot
 
@@ -37,13 +35,13 @@ PageInfo<PmsBrand> pageInfo = new PageInfo<PmsBrand>(list);
 
 > MyBatis的代码生成器，可以根据数据库生成model、mapper.xml、mapper接口和Example，通常情况下的单表查询不用再手写mapper。
 
-## 项目搭建
+## CH新零售平台搭建
 
-### 使用IDEA初始化一个SpringBoot项目
+### 使用IDEA初始化一个SpringBootCH新零售平台
 
 ![](../images/arch_screen_01.png)
 
-### 添加项目依赖
+### 添加CH新零售平台依赖
 > 在pom.xml中添加相关依赖。
 
 ```xml
@@ -107,9 +105,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/mall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
-    username: root
-    password: root
+    url: jdbc:mysql://localhost:3306/chmall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: chunhui
+    password: chunhui
 
 mybatis:
   mapper-locations:
@@ -117,7 +115,7 @@ mybatis:
     - classpath*:com/**/mapper/*.xml
 ```
 
-### 项目结构说明
+### CH新零售平台结构说明
 
 ![](../images/arch_screen_02.png)
 
@@ -142,7 +140,7 @@ mybatis:
         <!-- 为生成的Java模型创建一个toString方法 -->
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
         <!--可以自定义生成model的代码注释-->
-        <commentGenerator type="com.macro.mall.tiny.mbg.CommentGenerator">
+        <commentGenerator type="com.chunhui.chmall.mbg.CommentGenerator">
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
             <property name="suppressAllComments" value="true"/>
             <property name="suppressDate" value="true"/>
@@ -157,12 +155,12 @@ mybatis:
             <property name="nullCatalogMeansCurrent" value="true" />
         </jdbcConnection>
         <!--指定生成model的路径-->
-        <javaModelGenerator targetPackage="com.macro.mall.tiny.mbg.model" targetProject="mall-tiny-01\src\main\java"/>
+        <javaModelGenerator targetPackage="com.chunhui.chmall.mbg.model" targetProject="chmall-tiny-01\src\main\java"/>
         <!--指定生成mapper.xml的路径-->
-        <sqlMapGenerator targetPackage="com.macro.mall.tiny.mbg.mapper" targetProject="mall-tiny-01\src\main\resources"/>
+        <sqlMapGenerator targetPackage="com.chunhui.chmall.mbg.mapper" targetProject="chmall-tiny-01\src\main\resources"/>
         <!--指定生成mapper接口的的路径-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.macro.mall.tiny.mbg.mapper"
-                             targetProject="mall-tiny-01\src\main\java"/>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.chunhui.chmall.mbg.mapper"
+                             targetProject="chmall-tiny-01\src\main\java"/>
         <!--生成全部表tableName设为%-->
         <table tableName="pms_brand">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
@@ -174,7 +172,7 @@ mybatis:
 ### 运行Generator的main函数生成代码
 
 ```java
-package com.macro.mall.tiny.mbg;
+package com.chunhui.chmall.mbg;
 
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;
@@ -219,7 +217,7 @@ public class Generator {
 > 用于配置需要动态生成的mapper接口的路径
 
 ```java
-package com.macro.mall.tiny.config;
+package com.chunhui.chmall.config;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Configuration;
@@ -229,7 +227,7 @@ import org.springframework.context.annotation.Configuration;
  * Created by macro on 2019/4/8.
  */
 @Configuration
-@MapperScan("com.macro.mall.tiny.mbg.mapper")
+@MapperScan("com.chunhui.chmall.mbg.mapper")
 public class MyBatisConfig {
 }
 
@@ -241,12 +239,12 @@ public class MyBatisConfig {
 > 实现PmsBrand表中的添加、修改、删除及分页查询接口。
 
 ```java
-package com.macro.mall.tiny.controller;
+package com.chunhui.chmall.controller;
 
-import com.macro.mall.tiny.common.api.CommonPage;
-import com.macro.mall.tiny.common.api.CommonResult;
-import com.macro.mall.tiny.mbg.model.PmsBrand;
-import com.macro.mall.tiny.service.PmsBrandService;
+import com.chunhui.chmall.common.api.CommonPage;
+import com.chunhui.chmall.common.api.CommonResult;
+import com.chunhui.chmall.mbg.model.PmsBrand;
+import com.chunhui.chmall.service.PmsBrandService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -336,10 +334,10 @@ public class PmsBrandController {
 ```
 ### 添加Service接口
 ```java
-package com.macro.mall.tiny.service;
+package com.chunhui.chmall.service;
 
 
-import com.macro.mall.tiny.mbg.model.PmsBrand;
+import com.chunhui.chmall.mbg.model.PmsBrand;
 
 import java.util.List;
 
@@ -364,13 +362,13 @@ public interface PmsBrandService {
 ```
 ### 实现Service接口
 ```java
-package com.macro.mall.tiny.service.impl;
+package com.chunhui.chmall.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.macro.mall.tiny.mbg.mapper.PmsBrandMapper;
-import com.macro.mall.tiny.mbg.model.PmsBrand;
-import com.macro.mall.tiny.mbg.model.PmsBrandExample;
-import com.macro.mall.tiny.service.PmsBrandService;
+import com.chunhui.chmall.mbg.mapper.PmsBrandMapper;
+import com.chunhui.chmall.mbg.model.PmsBrand;
+import com.chunhui.chmall.mbg.model.PmsBrandExample;
+import com.chunhui.chmall.service.PmsBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -419,10 +417,3 @@ public class PmsBrandServiceImpl implements PmsBrandService {
 }
 
 ```
-
-## 项目源码地址
-[https://github.com/macrozheng/mall-learning/tree/master/mall-tiny-01](https://github.com/macrozheng/mall-learning/tree/master/mall-tiny-01)
-
-## 公众号
-
-![公众号图片](http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/banner/qrcode_for_macrozheng_258.jpg)

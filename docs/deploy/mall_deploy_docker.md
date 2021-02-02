@@ -1,8 +1,6 @@
-mall项目全套学习教程连载中，[关注公众号](#公众号)第一时间获取。
+# CH新零售平台【CHMALL】在Linux环境下的部署（基于Docker容器）
 
-# mall在Linux环境下的部署（基于Docker容器）
-
-> 本文主要以图文的形式讲解mall在Linux环境下的部署，涉及在Docker容器中安装MySQL、Redis、Nginx、RabbitMQ、MongoDB、Elasticsearch、Logstash、Kibana，以及SpringBoot应用部署，基于`CenterOS7.6`。
+> 本部分主要以图文的形式说明CHMALL在Linux环境下的部署，涉及在Docker容器中安装MySQL、Redis、Nginx、RabbitMQ、MongoDB、Elasticsearch、Logstash、Kibana，以及SpringBoot应用部署，基于`CenterOS7.6`。
 
 ## Docker环境安装
 

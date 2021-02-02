@@ -117,7 +117,14 @@ mybatis:
 
 ### CH新零售平台结构说明
 
-![](../images/arch_screen_02.png)
+
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0202/102903_0e6f101e_459158.png "屏幕截图.png")
+- common存放通用类，如工具类与通用的返回结果等
+- config存放java配置以及平台配置
+- controler 存放控制器逻辑
+- mbg存放mbg生成的代码
+- service存放服务类
+- generatorConfig.xml控制mbg生成代码的配置文件
 
 ### Mybatis generator 配置文件
 
@@ -155,12 +162,12 @@ mybatis:
             <property name="nullCatalogMeansCurrent" value="true" />
         </jdbcConnection>
         <!--指定生成model的路径-->
-        <javaModelGenerator targetPackage="com.chunhui.chmall.mbg.model" targetProject="chmall-tiny-01\src\main\java"/>
+        <javaModelGenerator targetPackage="com.chunhui.chmall.mbg.model" targetProject="chmall-demo\src\main\java"/>
         <!--指定生成mapper.xml的路径-->
-        <sqlMapGenerator targetPackage="com.chunhui.chmall.mbg.mapper" targetProject="chmall-tiny-01\src\main\resources"/>
+        <sqlMapGenerator targetPackage="com.chunhui.chmall.mbg.mapper" targetProject="chmall-demo\src\main\resources"/>
         <!--指定生成mapper接口的的路径-->
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.chunhui.chmall.mbg.mapper"
-                             targetProject="chmall-tiny-01\src\main\java"/>
+                             targetProject="chmall-demo\src\main\java"/>
         <!--生成全部表tableName设为%-->
         <table tableName="pms_brand">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>

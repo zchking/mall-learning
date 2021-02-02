@@ -1,6 +1,6 @@
-# CH新零售平台【chmall】开发说明
+# CH新零售平台【CHMALL】开发说明
 
-> 本说明主要讲解CH新零售平台【chmall】的基本开发环境搭建，并以商品品牌为例实现基本的CRUD操作及通过PageHelper实现分页查询。
+> 本说明主要讲解CH新零售平台【CHMALL】的基本开发环境搭建，并以商品品牌为例实现基本的CRUD操作及通过PageHelper实现分页查询。
 
 ## mysql数据库环境搭建
 

@@ -465,7 +465,3 @@ firewall-cmd --reload
 - mall-portal的api接口文档地址：http://192.168.3.101:8085/swagger-ui.html
 
 ![](../images/mall_linux_deploy_15.png)
-
-## 公众号
-
-![公众号图片](http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/banner/qrcode_for_macrozheng_258.jpg)
